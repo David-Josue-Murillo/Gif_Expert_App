@@ -1,11 +1,16 @@
 import { useState } from "react"
-import { AddCAtegory } from "./components/AddCAtegory";
+import { AddCategory } from "./components/AddCategory";
+import { GifGrid } from "./components/GifGrid";
 
 export const GifExpertApp = () => {
 
     const [categories, setCategories] = useState(['One Punch', 'Dragon Ball']);
 
     const onNewCategory = (newCategory) => {
+
+        // Evita que se agreguen categorias duplicadas
+        if (categories.includes(newCategory)) return;
+
         setCategories([...categories, newCategory]);
     }
 
@@ -13,17 +18,18 @@ export const GifExpertApp = () => {
         <>
             <h1>GifExpertApp</h1>
 
-            <AddCAtegory
+            <AddCategory
                 onNewCategory={onNewCategory}
             />
 
-            <ol>
-                {
-                    categories.map(category => (
-                        <li key={category}>{category}</li>
-                    ))
-                }
-            </ol>
+            {
+                categories.map(category => (
+                    <GifGrid
+                        key={category}
+                        category={category}
+                    />
+                ))
+            }
         </>
     )
 }
