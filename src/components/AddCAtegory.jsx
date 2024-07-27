@@ -19,15 +19,13 @@ export const AddCAtegory = ({categories,setCategories}) => {
     }
 
     return (
-        <form>
+        <form onSubmit={ onSubmit }>
             <input 
                 type="text" 
                 placeholder="Buscar gifs"
                 value={ inputValue }
                 onChange={ onInputChange } 
                 />
-
-            <button type="submit" onClick={ onSubmit }>Agregar</button>
         </form>
     )
 }
