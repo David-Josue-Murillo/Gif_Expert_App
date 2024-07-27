@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export const AddCAtegory = ({categories,setCategories}) => {
+export const AddCAtegory = ({onNewCategory}) => {
 
     const [inputValue, setInputValue] = useState('');
 
@@ -12,9 +12,10 @@ export const AddCAtegory = ({categories,setCategories}) => {
     // Funcion para agregar la categoria al estado
     const onSubmit = (e) => {
         e.preventDefault();
-        if(inputValue.trim().length <= 1) return; // Si el input esta vacio no se agrega la categoria
-        
-        setCategories([...categories, inputValue]); // Se agrega la categoria al estado
+        const newCategory = inputValue.trim();
+        if(newCategory.length <= 1) return; // Si el input esta vacio no se agrega la categoria
+
+        onNewCategory(newCategory);
         setInputValue(''); // Se vacia el input cada vez que se agrega una categoria
     }
 
